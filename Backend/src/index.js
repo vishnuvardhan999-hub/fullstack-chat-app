@@ -28,26 +28,26 @@ app.use(
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 
-// if (process.env.NODE_ENV === "production") {
-//   app.use(express.static(path.join(__dirname, "../Frontend/dist")));
-
-//   app.get("*", (_, res) => {
-//     res.sendFile(path.join(__dirname, "../Frontend", "dist", "index.html"));
-//   });
-// }
-
-
 if (process.env.NODE_ENV === "production") {
-  // Add these two lines here:
-  const frontendPath = path.join(__dirname, "../Frontend/dist");
-  console.log("🚨 Serving static files from:", frontendPath);
-
-  app.use(express.static(frontendPath));
+  app.use(express.static(path.join(__dirname, "../Frontend/dist")));
 
   app.get("*", (_, res) => {
     res.sendFile(path.join(__dirname, "../Frontend", "dist", "index.html"));
   });
 }
+
+
+// if (process.env.NODE_ENV === "production") {
+//   // Add these two lines here:
+//   const frontendPath = path.join(__dirname, "../Frontend/dist");
+//   console.log("🚨 Serving static files from:", frontendPath);
+
+//   app.use(express.static(frontendPath));
+
+//   app.get("*", (_, res) => {
+//     res.sendFile(path.join(__dirname, "../Frontend", "dist", "index.html"));
+//   });
+// }
 
 
 server.listen(PORT, () => {
